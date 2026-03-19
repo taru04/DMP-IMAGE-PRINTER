@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload Image</title>
+
+<style>
+body {
+    background: #1e1e2f;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial;
+}
+
+.box {
+    border: 2px dashed #6c63ff;
+    padding: 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+input {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" onclick="fileInput.click()">
+    <h2>📂 Upload Image</h2>
+    <input type="file" id="fileInput" accept="image/*">
+</div>
+<script>
+const fileInput = document.getElementById("fileInput");
+
+fileInput.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (file) {
+        // Save file name
+        localStorage.setItem("fileName", file.name);
+
+        // Convert to base64 (for transfer)
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            localStorage.setItem("imageData", e.target.result);
+
+            // Move to next page
+            window.location.href = "process.html";
+        };
+
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
+</body>
+</html>

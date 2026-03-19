@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Process Image</title>
+
+<style>
+body {
+    background: #2a2a40;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial;
+}
+
+.container {
+    text-align: center;
+}
+
+img {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
+    border: none;
+    background: #6c63ff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #8a84ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Preview</h2>
+    <img id="img">
+
+    <br>
+
+    <button onclick="convert()">Convert</button>
+    <button onclick="printImg()">Print</button>
+
+    <p id="status">Ready</p>
+</div>
+
+<script>
+const img = document.getElementById("img");
+
+// Get stored image
+const imageData = localStorage.getItem("imageData");
+const fileName = localStorage.getItem("fileName");
+
+if (imageData) {
+    img.src = imageData;
+}
+
+// Convert button
+function convert() {
+    document.getElementById("status").innerText = 
+        "Converting " + fileName + "...";
+}
+
+// Print button
+function printImg() {
+    document.getElementById("status").innerText = 
+        "Printing " + fileName + "...";
+}
+</script>
+</body>
+</html>
